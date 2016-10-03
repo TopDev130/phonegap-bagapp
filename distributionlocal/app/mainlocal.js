@@ -1040,6 +1040,7 @@ define('guide/agenda/guide.agenda.controller',[
             {
                 if (uiCalendarConfig.calendars[calendar])
                 {
+                    // uiCalendarConfig.calendars[calendar].fullCalendar();
                     uiCalendarConfig.calendars[calendar].fullCalendar('render');
                 }
             }, 10);
@@ -1053,8 +1054,10 @@ define('guide/agenda/guide.agenda.controller',[
                 header: {
                     left: 'title',
                     right: '',
-                    center: 'agendaWeek agendaDay today prev,next'
+                    center: 'agendaWeek today prev,next'
                 },
+                minTime: '07:00:00',
+                maxTime: '24:00:00',
                 eventClick: vm.alertOnEventClick
             }
         };
@@ -1582,12 +1585,12 @@ define('menu/menu.controller',[
             document.addEventListener('backbutton', onBackKeyDown, false);
             document.addEventListener('resume', function(){
                 setTimeout(function() {
-            $rootScope.PushNotification.setApplicationIconBadgeNumber(function() {
-                console.log('success');
-            }, function() {
-                console.log('error');
-            }, 0);
-        }, 0);
+                    // $rootScope.PushNotification.setApplicationIconBadgeNumber(function() {
+                    //     console.log('success');
+                    // }, function() {
+                    //     console.log('error');
+                    // }, 0);
+                }, 0);
             
             }, false);
             //document.addEventListener('menubutton', onMenuKeyDown, false);
@@ -1604,153 +1607,153 @@ define('menu/menu.controller',[
                 navigator.splashscreen.hide();
             }, 1000);
 
-            var pubnub = PUBNUB({
-                publish_key: PUSH.pubnubPUB,
-                subscribe_key: PUSH.pubnubSUB
-            });
-            $rootScope.pubnub = pubnub;
-            var push = PushNotification.init({
-                "android": {"senderID": PUSH.gcmSender, "sound": true, "vibrate": true, "clearNotifications": true},
-                "ios": {"alert": true, "badge": true, "sound": true, "clearBadge": true},
-                "windows": {}
-            });
-            $rootScope.PushNotification = push;
-            push.setApplicationIconBadgeNumber(function() {
-                console.log('success');
-            }, function() {
-                console.log('error');
-            }, 0);
-            push.on('registration', function (data)
-            {
-                $log.debug("Registered on notifications", data.registrationId);
+            // var pubnub = PUBNUB({
+            //     publish_key: PUSH.pubnubPUB,
+            //     subscribe_key: PUSH.pubnubSUB
+            // });
+            // $rootScope.pubnub = pubnub;
+            // var push = PushNotification.init({
+            //     "android": {"senderID": PUSH.gcmSender, "sound": true, "vibrate": true, "clearNotifications": true},
+            //     "ios": {"alert": true, "badge": true, "sound": true, "clearBadge": true},
+            //     "windows": {}
+            // });
+            // $rootScope.PushNotification = push;
+            // push.setApplicationIconBadgeNumber(function() {
+            //     console.log('success');
+            // }, function() {
+            //     console.log('error');
+            // }, 0);
+            // push.on('registration', function (data)
+            // {
+            //     $log.debug("Registered on notifications", data.registrationId);
 
-                pubnub.mobile_gw_provision({
-                    device_id: data.registrationId,
-                    op: 'add',
-                    gw_type: $rootScope.tipogateway,
-                    channel: 'all',
-                    callback: function (data)
-                    {
-                        $log.debug("success: " + JSON.stringify(data));
-                    },
-                    error: function (data)
-                    {
-                        $log.error("error: " + JSON.stringify(data));
-                    }
-                });
-                var pushId = AuthenticationService.getPushId() || data.registrationId;
-                var channels = AuthenticationService.getChannels() || [];
-                $log.debug("channels: " + JSON.stringify(channels));
-                $http({
-                    cache: false,
-                    method: 'GET',
-                    url: 'http://pubsub.pubnub.com/v1/push/sub-key/' + PUSH.pubnubSUB + '/devices/' + pushId + '?type=' + $rootScope.tipogateway
-                }).then(function (response)
-                {
-                    $log.debug("channelsPubNub: " + JSON.stringify(response.data));
-                    var channelsPubNub = response.data;
-                    for (var key in channelsPubNub)
-                    {
-                        if (pushId === data.registrationId)
-                        {
-                            if (channelsPubNub[key] === 'all')
-                            {
-                                continue;
-                            }
-                            var tocontinue = false;
-                            for (var key2 in channels)
-                            {
-                                if (channelsPubNub[key] === channels[key2])
-                                {
-                                    tocontinue = true;
-                                    break;
-                                }
+            //     pubnub.mobile_gw_provision({
+            //         device_id: data.registrationId,
+            //         op: 'add',
+            //         gw_type: $rootScope.tipogateway,
+            //         channel: 'all',
+            //         callback: function (data)
+            //         {
+            //             $log.debug("success: " + JSON.stringify(data));
+            //         },
+            //         error: function (data)
+            //         {
+            //             $log.error("error: " + JSON.stringify(data));
+            //         }
+            //     });
+            //     var pushId = AuthenticationService.getPushId() || data.registrationId;
+            //     var channels = AuthenticationService.getChannels() || [];
+            //     $log.debug("channels: " + JSON.stringify(channels));
+            //     $http({
+            //         cache: false,
+            //         method: 'GET',
+            //         url: 'http://pubsub.pubnub.com/v1/push/sub-key/' + PUSH.pubnubSUB + '/devices/' + pushId + '?type=' + $rootScope.tipogateway
+            //     }).then(function (response)
+            //     {
+            //         $log.debug("channelsPubNub: " + JSON.stringify(response.data));
+            //         var channelsPubNub = response.data;
+            //         for (var key in channelsPubNub)
+            //         {
+            //             if (pushId === data.registrationId)
+            //             {
+            //                 if (channelsPubNub[key] === 'all')
+            //                 {
+            //                     continue;
+            //                 }
+            //                 var tocontinue = false;
+            //                 for (var key2 in channels)
+            //                 {
+            //                     if (channelsPubNub[key] === channels[key2])
+            //                     {
+            //                         tocontinue = true;
+            //                         break;
+            //                     }
 
-                            }
-                            if (tocontinue)
-                            {
-                                continue;
-                            }
-                        }
-                        pubnub.mobile_gw_provision({
-                            device_id: pushId,
-                            op: 'remove',
-                            gw_type: $rootScope.tipogateway,
-                            channel: channelsPubNub[key],
-                            callback: function (data)
-                            {
-                                $log.debug("success: " + JSON.stringify(data));
-                            },
-                            error: function (data)
-                            {
-                                $log.error("error: " + JSON.stringify(data));
-                            }
-                        });
-                    }
-                }, function (response)
-                {
-                    $log.error("error: " + response);
-                });
+            //                 }
+            //                 if (tocontinue)
+            //                 {
+            //                     continue;
+            //                 }
+            //             }
+            //             pubnub.mobile_gw_provision({
+            //                 device_id: pushId,
+            //                 op: 'remove',
+            //                 gw_type: $rootScope.tipogateway,
+            //                 channel: channelsPubNub[key],
+            //                 callback: function (data)
+            //                 {
+            //                     $log.debug("success: " + JSON.stringify(data));
+            //                 },
+            //                 error: function (data)
+            //                 {
+            //                     $log.error("error: " + JSON.stringify(data));
+            //                 }
+            //             });
+            //         }
+            //     }, function (response)
+            //     {
+            //         $log.error("error: " + response);
+            //     });
 
-                AuthenticationService.setPushId(data.registrationId);
-            });
+            //     AuthenticationService.setPushId(data.registrationId);
+            // });
 
-            push.on('notification', function (data)
-            {
-                $log.debug(data);
-                $log.debug("data", JSON.stringify(data));
-                $log.debug("data.message: ", data.message);
-                $log.debug("data.title: ", data.title);
-                $log.debug("data.count: ", data.count);
-                $log.debug("data.sound: ", data.sound);
-                $log.debug("data.image: ", data.image);
-                $log.debug("data.additionalData: " + JSON.stringify(data.additionalData));
+            // push.on('notification', function (data)
+            // {
+            //     $log.debug(data);
+            //     $log.debug("data", JSON.stringify(data));
+            //     $log.debug("data.message: ", data.message);
+            //     $log.debug("data.title: ", data.title);
+            //     $log.debug("data.count: ", data.count);
+            //     $log.debug("data.sound: ", data.sound);
+            //     $log.debug("data.image: ", data.image);
+            //     $log.debug("data.additionalData: " + JSON.stringify(data.additionalData));
 
-                if (!!data.additionalData && data.additionalData.html)
-                {
-                    $rootScope.$apply(function ()
-                    {
-                        $rootScope.$broadcast(PUSH.newNotification);
-                        DialogController.$inject = ['$scope', '$mdDialog'];
-                        function DialogController($scope, $mdDialog)
-                        {
-                            $scope.openRequest = function (id)
-                            {
-                                $location.path('/guide/agenda/events/' + id);
-                                $mdDialog.hide();
-                            };
-                            $scope.hide = function ()
-                            {
-                                $mdDialog.hide();
-                            };
-                            $scope.cancel = function ()
-                            {
-                                $mdDialog.cancel();
-                            };
-                            $scope.answer = function (answer)
-                            {
-                                $mdDialog.hide(answer);
-                            };
-                        }
-                        $mdDialog.show({
-                            controller: DialogController,
-                            template: atob(data.additionalData.html),
-                            parent: angular.element(document.body),
-                            clickOutsideToClose: false
-                        });
-                    });
-                }
+            //     if (!!data.additionalData && data.additionalData.html)
+            //     {
+            //         $rootScope.$apply(function ()
+            //         {
+            //             $rootScope.$broadcast(PUSH.newNotification);
+            //             DialogController.$inject = ['$scope', '$mdDialog'];
+            //             function DialogController($scope, $mdDialog)
+            //             {
+            //                 $scope.openRequest = function (id)
+            //                 {
+            //                     $location.path('/guide/agenda/events/' + id);
+            //                     $mdDialog.hide();
+            //                 };
+            //                 $scope.hide = function ()
+            //                 {
+            //                     $mdDialog.hide();
+            //                 };
+            //                 $scope.cancel = function ()
+            //                 {
+            //                     $mdDialog.cancel();
+            //                 };
+            //                 $scope.answer = function (answer)
+            //                 {
+            //                     $mdDialog.hide(answer);
+            //                 };
+            //             }
+            //             $mdDialog.show({
+            //                 controller: DialogController,
+            //                 template: atob(data.additionalData.html),
+            //                 parent: angular.element(document.body),
+            //                 clickOutsideToClose: false
+            //             });
+            //         });
+            //     }
 
-                push.finish(function ()
-                {
-                    $log.debug("processing of push data is finished");
-                });
-            });
+            //     push.finish(function ()
+            //     {
+            //         $log.debug("processing of push data is finished");
+            //     });
+            // });
 
-            push.on('error', function (e)
-            {
-                $log.error("e.message: " + e.message);
-            });
+            // push.on('error', function (e)
+            // {
+            //     $log.error("e.message: " + e.message);
+            // });
 
         }
         $scope.$on('$destroy', function ()

@@ -96,6 +96,7 @@ define([
             {
                 if (uiCalendarConfig.calendars[calendar])
                 {
+                    // uiCalendarConfig.calendars[calendar].fullCalendar();
                     uiCalendarConfig.calendars[calendar].fullCalendar('render');
                 }
             }, 10);
@@ -109,8 +110,10 @@ define([
                 header: {
                     left: 'title',
                     right: '',
-                    center: 'agendaWeek agendaDay today prev,next'
+                    center: 'agendaWeek today prev,next'
                 },
+                minTime: '07:00:00',
+                maxTime: '24:00:00',
                 eventClick: vm.alertOnEventClick
             }
         };

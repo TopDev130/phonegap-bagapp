@@ -1,0 +1,16 @@
+{
+    "LOGIN": {
+        "BUTTON_LOGIN": "Accedi",
+        "BUTTON_REGISTER": "Registrati"
+    },
+    "REGISTER": {
+        "TITLE": "Registrazione"
+    },
+    "MENU":{
+        "LOGOUT" : "Logout",
+        "TITLE":"Menu",
+        "HOME":"Home",
+        "REQUESTS":"Richieste",
+        "AGENDA":"Agenda"
+    }
+}

@@ -1,0 +1,35 @@
+<md-content class="md-padding" flex>
+    <form name="vm.loginForm" ng-submit="vm.login(vm.username, vm.password)">
+        <md-card>
+            <md-card-title>
+                <md-card-title-media layout="row" layout-align="center start" flex>
+                    <div class="md-media-lg card-media">
+                        <img src="img/logo_white.jpg" alt="Logo" />
+                    </div>
+                </md-card-title-media>
+            </md-card-title>
+            <md-card-content>
+                <md-input-container class="md-block">
+                    <label>Email</label>
+                    <input name="username" ng-model="vm.username" type="email" required>
+                    <div ng-messages="vm.loginForm.username.$error">
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="email">Please insert a valid email.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Password</label>
+                    <input name="password" ng-model="vm.password" type="password" required>
+                    <div ng-messages="vm.loginForm.password.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+                <md-progress-linear ng-if="vm.isLoading" md-mode="indeterminate"></md-progress-linear>
+                <p ng-if="!!vm.error" class="md-subhead">{{ vm.error}}</p>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button type="submit" ng-disabled="!vm.loginForm.$valid || vm.isLoading" class="md-raised md-primary">Login</md-button>
+            </md-card-actions>
+        </md-card>
+    </form>
+</md-content>

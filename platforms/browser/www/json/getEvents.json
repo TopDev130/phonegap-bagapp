@@ -1,0 +1,62 @@
+{
+    "statusCode": 200,
+    "error": "Wrong credentials",
+    "data": [
+        {
+            "date": "19-11-2015",
+            "hour": "8:30",
+            "location": "Gianicolo",
+            "id": 1,
+            "confirmed" : false
+        },
+        {
+            "date": "20-11-2015",
+            "hour": "9:30",
+            "location": "Colosseo",
+            "id": 2,
+            "confirmed" : false
+        },
+        {
+            "date": "22-11-2015",
+            "hour": "14:30",
+            "location": "Gianicolo",
+            "id": 3,
+            "confirmed" : true
+        },
+        {
+            "date": "25-11-2015",
+            "hour": "8:30",
+            "location": "S.Maggiore",
+            "id": 4,
+            "confirmed" : false
+        },
+        {
+            "date": "26-11-2015",
+            "hour": "8:30",
+            "location": "Gianicolo",
+            "id": 5,
+            "confirmed" : true
+        },
+        {
+            "date": "27-11-2015",
+            "hour": "9:30",
+            "location": "Colosseo",
+            "id": 6,
+            "confirmed" : false
+        },
+        {
+            "date": "28-11-2015",
+            "hour": "14:30",
+            "location": "Gianicolo",
+            "id": 7,
+            "confirmed" : false
+        },
+        {
+            "date": "29-11-2015",
+            "hour": "8:30",
+            "location": "S.Maggiore",
+            "id": 8,
+            "confirmed" : true
+        }
+    ]
+}

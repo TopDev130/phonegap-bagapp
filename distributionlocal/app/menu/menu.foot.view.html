@@ -1,0 +1,12 @@
+<md-toolbar layout="row" class="footer md-hue-1" layout-align="space-around center">
+	<md-button ng-click="menu.go('/calendar')" class="md-icon-button" aria-label="Calendar">
+		<img src="img/calendar.png" />
+	</md-button>
+	<md-button ng-click="menu.go('/notifications')" class="md-icon-button" aria-label="Notifications">
+		<p class="notificheNonLette" ng-if="globals.currentUser.notifiche_non_lette > 0">{{globals.currentUser.notifiche_non_lette}}</p>
+		<img src="img/notifications.png" />
+	</md-button>
+	<md-button ng-click="menu.go('/ranking')" class="md-icon-button" aria-label="Ranking">
+		<img src="img/ranking.png" />
+	</md-button>
+</md-toolbar>

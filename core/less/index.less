@@ -1,0 +1,105 @@
+/* CSS Document */
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../bower_components/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+        local('MaterialIcons-Regular'),
+        url(../bower_components/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff2) format('woff2'),
+        url(../bower_components/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff) format('woff'),
+        url(../bower_components/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+* {
+    outline: none;
+}
+.italic {
+    font-style: italic;
+}
+.bold {
+    font-weight: bold;
+}
+.normal {
+    font-weight: normal !important;
+}
+.center {
+    text-align: center;
+}
+.custombutton {
+    width:auto;
+    height: auto;
+    margin:0;
+    padding:0;
+    min-width:initial;
+    min-height:initial;
+    line-height: normal;
+}
+
+
+#loaderResolve {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 61;
+    background-image: url(../img/background-login-form.png);
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    md-progress-circular {
+        position: absolute;
+        top: calc(~"50% - 50px");
+        left: calc(~"50% - 50px");
+    }
+}
+
+.fc-toolbar .fc-left {
+    float: left; 
+    padding-bottom: 10px;
+    width: 100%;
+    h2 {
+        width: 100%;
+    }
+}

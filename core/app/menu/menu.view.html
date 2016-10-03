@@ -1,0 +1,22 @@
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-swipe-left="menu.onSwipeLeft()">
+    <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">{{'MENU.TITLE' | translate}}</h1>
+      </md-toolbar>
+    <md-content layout="column">
+            <div layout="row" layout-align="space-between center">
+			<md-button class="md-primary" href="#/guide/agenda/events" layout="row" layout-align="start center" flex aria-label="Home">
+                            <i class="material-icons">&#xE88A;</i>&nbsp;<p>{{'MENU.HOME' | translate}}</p>
+			</md-button>
+		</div>
+        <div layout="row" layout-align="space-between center">
+			<md-button class="md-primary" href="#/guide/agenda" layout="row" layout-align="start center" flex aria-label="Agenda">
+                            <i class="material-icons">&#xE8DF;</i>&nbsp;<p>{{'MENU.AGENDA' | translate}}</p>
+			</md-button>
+		</div>
+		<div layout="row" layout-align="space-between center" ng-click="menu.logout()">
+			<md-button class="md-primary" href layout="row" layout-align="start center" flex aria-label="Logout">
+                            <i class="material-icons">&#xE8AC;</i>&nbsp;<p>{{'MENU.LOGOUT' | translate}}</p>
+			</md-button>
+		</div>
+    </md-content>
+</md-sidenav>

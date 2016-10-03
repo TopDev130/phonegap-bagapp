@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-versionCode="1" id="it.labbit.bag" ios-CFBundleVersion="1.0.0.001" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+    <feature name="Device">
+        <param name="browser-package" value="Device" />
+    </feature>
+    <name>BAG</name>
+    <description>
+        BAG PhoneGap applicazione.
+    </description>
+    <author email="info@riccardobracci.it" href="http://riccardobracci.it">Riccardo Bracci</author>
+    <content src="index.html" />
+    <icon src="www/icon.png" />
+    <splash src="www/screen.png" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <preference name="permissions" value="none" />
+    <preference name="orientation" value="portrait" />
+    <preference name="target-device" value="universal" />
+    <preference name="fullscreen" value="true" />
+    <preference name="webviewbounce" value="true" />
+    <preference name="prerendered-icon" value="false" />
+    <preference name="stay-in-webview" value="false" />
+    <preference name="ios-statusbarstyle" value="black-opaque" />
+    <preference name="detect-data-types" value="true" />
+    <preference name="exit-on-suspend" value="false" />
+    <preference name="show-splash-screen-spinner" value="true" />
+    <preference name="auto-hide-splash-screen" value="false" />
+    <preference name="disable-cursor" value="false" />
+    <preference name="android-minSdkVersion" value="15" />
+    <preference name="android-installLocation" value="auto" />
+    <preference name="android-windowSoftInputMode" value="stateVisible|adjustPan" />
+    <preference name="android-build-tool" value="gradle" />
+    <preference name="BackupWebStorage" value="none" />
+</widget>

@@ -1,0 +1,16 @@
+{
+    "LOGIN": {
+        "BUTTON_LOGIN": "Login",
+        "BUTTON_REGISTER": "Register"
+    },
+    "REGISTER": {
+        "TITLE": "Registration"
+    },
+    "MENU":{
+        "LOGOUT" : "Logout",
+        "TITLE":"Menu",
+        "HOME":"Home",
+        "REQUESTS":"Requests",
+        "AGENDA":"Agenda"
+    }
+}

@@ -1,0 +1,49 @@
+<ng-include src="'app/menu/menu.head.view.html'"></ng-include>
+<md-content flex>
+    <md-card>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Your requests</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <md-input-container ng-if="vm.events.length > 0">
+                <label>Filter</label>
+                <md-select ng-model="vm.search.stato_richiesta">
+                    <md-option value="" selected>
+                        All
+                    </md-option>
+                    <md-option value="0">
+                        Not Confirmed
+                    </md-option>
+                    <md-option value="3">
+                        Confirmed
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <div layout="row" layout-align="space-around center" ng-if="vm.events.length > 0">
+                <p flex="40"></p>
+                <p class="center" flex>View</p>
+                <p class="center" flex>Accept</p>
+                <p class="center" flex>Decline</p>
+            </div>
+            <md-divider></md-divider>
+            <div layout="row" ng-repeat="event in vm.events| filter:vm.search" layout-align="space-around center">
+                <p flex="40">{{ convertDate(event.data_tour)}}<br>{{ convertTime(event.orario)}} {{ event.indirizzo}}</p>
+                <md-button class="md-icon-button" aria-label="View" flex ng-href="#/guide/agenda/events/{{event.id_prenotazione}}">
+                    <i class="material-icons">&#xE8EE;</i>
+                </md-button>
+                <md-button ng-click="vm.acceptTour($event, event.id_richiesta)" ng-disabled="event.stato_richiesta === '3' || event.stato_richiesta === '4'" class="md-icon-button md-primary" aria-label="View" flex>
+                    <i class="material-icons">&#xE8DC;</i>
+                </md-button>
+                <md-button ng-click="vm.declineTour($event, event.id_richiesta)" ng-disabled="event.stato_richiesta === '3' || event.stato_richiesta === '4'" class="md-icon-button md-warn" aria-label="View" flex>
+                    <i class="material-icons">&#xE8DB;</i>
+                </md-button>
+            </div>
+            <div ng-if="vm.events.length <= 0">
+                <p class="md-title">There are no events planned yet.</p>
+            </div>
+        </md-card-content>
+    </md-card>
+</md-content>
+<ng-include src="'app/menu/menu.footer.view.html'"></ng-include>

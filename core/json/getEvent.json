@@ -1,0 +1,7 @@
+{
+    "statusCode": 200,
+    "error": "Wrong credentials",
+    "data": {
+        "type": "guida"
+    }
+}

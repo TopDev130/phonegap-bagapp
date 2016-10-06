@@ -1,6 +1,6 @@
 {
   "name": "material-design-icons-iconfont",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "author": "Material Design Authors",
   "description": "Material Design icons by Google",
   "keywords": [
@@ -16,11 +16,11 @@
   ],
   "license": "CC-BY-4.0",
   "homepage": "http://google.com/design/spec",
-  "_release": "3.0.0",
+  "_release": "3.0.1",
   "_resolution": {
     "type": "version",
-    "tag": "3.0.0",
-    "commit": "1b6daede8d83e24672b28aa7c46cd986e80ad16c"
+    "tag": "3.0.1",
+    "commit": "18aa8154064e1d475081ae5de233e1fbc0b305f0"
   },
   "_source": "https://github.com/Jossef/material-design-icons-iconfont.git",
   "_target": "*",

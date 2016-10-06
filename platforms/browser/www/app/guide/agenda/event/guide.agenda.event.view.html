@@ -33,7 +33,7 @@
                 </div>
                 <div ng-if="vm.event.data_tour || vm.event.ora_inizio" layout="row"  layout-align="space-between center">
                     <i class="material-icons">&#xE8B5;</i>
-                    <p>{{ vm.event.data_tour}} {{ vm.event.ora_inizio}}</p>
+                    <p>{{ vm.convertDate(vm.event.data_tour)}} {{ vm.convertTime(vm.event.ora_inizio)}}</p>
                 </div>
                 <div ng-if="vm.event.durata" layout="row"  layout-align="space-between center">
                     <i class="material-icons">&#xE88C;</i>
@@ -44,6 +44,22 @@
                     <p>{{ vm.event.language_requested}}</p>
                 </div>
 
+            </md-card-content>
+        </md-card>
+        <md-card>
+            <md-card-content>
+                <div ng-if="vm.event.chief_name" layout="row"  layout-align="space-between center">
+                    <p><strong>Guide chief name:</strong></p>
+                    <p>{{ vm.event.chief_name}}</p>
+                </div>
+                <div ng-if="vm.event.chief_surname" layout="row"  layout-align="space-between center">
+                    <p><strong>Guide chief surname:</strong></p>
+                    <p>{{ vm.event.chief_surname}}</p>
+                </div>
+                <div ng-if="vm.event.chief_companyname" layout="row"  layout-align="space-between center">
+                    <p><strong>Guide chief company:</strong></p>
+                    <p>{{ vm.event.chief_companyname}}</p>
+                </div>
             </md-card-content>
         </md-card>
         <md-card>
@@ -129,9 +145,10 @@
             <md-card-content> 
                 <div layout="row"  layout-align="space-between center">
                     <p><strong>Audio guide:</strong></p>
-                    <md-button class="custombutton" ng-disabled="vm.event.radio_guides === '0'" md-no-ink>
+                    <label class="custombutton">{{vm.convertString(vm.event.radio_guides)}}</label>
+<!--                     <md-button class="custombutton" ng-disabled="vm.event.radio_guides === '0'" md-no-ink>
                         <i class="material-icons md-48">&#xE310;</i>
-                    </md-button>
+                    </md-button> -->
                 </div>
                 <div ng-if="vm.event.voucher" layout="row"  layout-align="space-between center" layout-wrap>
                     <p><strong>Voucher {{ vm.voucherCount("voucher") }}:</strong></p>
@@ -164,6 +181,28 @@
                     </md-button>
                 </div>
             </md-card-content>
+        </md-card>
+
+        <md-card ng-if="vm.event.itinerary">
+            <md-card-content> 
+                <div layout="row"  layout-align="space-between center" align="center">
+                    <p style="margin: 10px auto 0"><strong>Itinerary</strong></p>
+                </div>
+                <div layout="row"  layout-align="space-between center" align="center">
+                    <p>{{vm.event.itinerary}}</p>
+                </div>
+            </md-card-content> 
+        </md-card>
+
+        <md-card ng-if="vm.event.notes">
+            <md-card-content>
+                <div layout="row"  layout-align="space-between center" align="center">
+                    <p style="margin: 10px auto 0"><strong>Notes</strong></p>
+                </div>
+                <div layout="row"  layout-align="space-between center" align="center">
+                    <p>{{vm.event.notes}}</p>
+                </div>
+            </md-card-content> 
         </md-card>
 
         <md-button class="md-primary md-raised" ng-disabled="vm.disableCheckout || vm.event.stato !== '3'" ng-click="vm.checkout($event)" md-no-ink>Checkout</md-button>

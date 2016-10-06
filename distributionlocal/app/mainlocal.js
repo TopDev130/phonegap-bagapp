@@ -967,7 +967,7 @@ define('guide/agenda/guide.agenda.controller',[
 
         vm.colors = {
             meetingInRome: '#fdbf2d',
-            other: '#604b7a',
+            other: '#0f5',
             available: '#1aaf54',
             notAvailable: '#fc0d1b'
         };
@@ -1003,6 +1003,9 @@ define('guide/agenda/guide.agenda.controller',[
                     };
                     vm.events.push(event);
                 }
+                //hack
+                $(".fc-unthemed").fullCalendar('render');
+                
                 vm.addRemoveEventSource(vm.eventSources, vm.eventsF);
             }, function (error)
             {
@@ -1118,7 +1121,8 @@ define('guide/agenda/event/guide.agenda.event.controller',[
 
         vm.disableCheckout = false;
         var dataTour = moment(event.data_tour + " " + event.ora_inizio, "YYYY-MM-DD HH:mm:ss");
-        if(dataTour.isSameOrAfter(moment()))
+        // if(dataTour.isSameOrAfter(moment()))
+        if(dataTour.diff(moment())>=0)
         {
             vm.disableCheckout = true;
         }
@@ -1129,6 +1133,8 @@ define('guide/agenda/event/guide.agenda.event.controller',[
             available: '#1aaf54',
             notAvailable: '#fc0d1b'
         };
+
+        console.log(event);
 
         vm.acceptTour = function (ev)
         {
@@ -1170,6 +1176,22 @@ define('guide/agenda/event/guide.agenda.event.controller',[
                         );
             });
         };
+
+        vm.convertDate = function(strDate) {
+            return (moment(strDate).format('DD/MM/YYYY'));
+        }
+
+        vm.convertTime = function(strTime) {
+            return (moment(strTime, ["HH:mm:ss"]).format("hh:mm A"));
+        }
+
+        vm.convertString = function(convflag) {
+            if (convflag === '0') {
+                return "No";
+            };
+            return "Yes";
+        }
+
         vm.checkout = function (ev)
         {
             var ref = cordova.InAppBrowser.open(encodeURI(vm.event.checkout), '_system', '');

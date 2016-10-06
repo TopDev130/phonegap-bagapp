@@ -23,7 +23,7 @@ define([
 
         vm.colors = {
             meetingInRome: '#fdbf2d',
-            other: '#604b7a',
+            other: '#0f5',
             available: '#1aaf54',
             notAvailable: '#fc0d1b'
         };
@@ -59,6 +59,9 @@ define([
                     };
                     vm.events.push(event);
                 }
+                //hack
+                $(".fc-unthemed").fullCalendar('render');
+                
                 vm.addRemoveEventSource(vm.eventSources, vm.eventsF);
             }, function (error)
             {

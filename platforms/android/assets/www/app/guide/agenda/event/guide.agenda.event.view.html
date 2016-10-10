@@ -1,0 +1,214 @@
+<ng-include src="'app/menu/menu.head.view.html'"></ng-include>
+<md-content flex class="md-padding">
+    <div layout="column">
+        <md-card ng-if="vm.event.stato === '0'">
+            <md-card-content>
+                <p class="center md-title" flex>Request</p>
+                <md-divider></md-divider>
+                <div layout="row">
+                    <div layout="column" layout-align="start center" flex>
+                        <p>Accept</p>
+                        <md-button ng-click="vm.acceptTour($event)" class="md-icon-button md-primary" aria-label="Accept">
+                            <i class="material-icons">&#xE8DC;</i>
+                        </md-button>
+                    </div>
+                    <div layout="column" layout-align="start center" flex>
+                        <p>Decline</p>
+                        <md-button ng-click="vm.declineTour($event)" class="md-icon-button md-warn" aria-label="Decline">
+                            <i class="material-icons">&#xE8DB;</i>
+                        </md-button>
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+        <md-card>
+            <md-card-content>
+                <div ng-if="vm.event.titolo" layout="row"  layout-align="space-between center">
+                    <p><strong>Title:</strong></p>
+                    <p>{{ vm.event.titolo}}</p>
+                </div>
+                <div ng-if="vm.event.appuntamento" layout="row"  layout-align="space-between center">
+                    <i class="material-icons">&#xE55F;</i>
+                    <p>{{ vm.event.appuntamento}}</p>
+                </div>
+                <div ng-if="vm.event.data_tour || vm.event.ora_inizio" layout="row"  layout-align="space-between center">
+                    <i class="material-icons">&#xE8B5;</i>
+                    <p>{{ vm.convertDate(vm.event.data_tour)}} {{ vm.convertTime(vm.event.ora_inizio)}}</p>
+                </div>
+                <div ng-if="vm.event.durata" layout="row"  layout-align="space-between center">
+                    <i class="material-icons">&#xE88C;</i>
+                    <p>{{ vm.event.durata}} Hours</p>
+                </div>
+                <div ng-if="vm.event.language_requested" layout="row"  layout-align="space-between center">
+                    <i class="material-icons">&#xE153;</i>
+                    <p>{{ vm.event.language_requested}}</p>
+                </div>
+
+            </md-card-content>
+        </md-card>
+        <md-card>
+            <md-card-content>
+                <div ng-if="vm.event.chief_name" layout="row"  layout-align="space-between center">
+                    <p><strong>Guide chief name:</strong></p>
+                    <p>{{ vm.event.chief_name}}</p>
+                </div>
+                <div ng-if="vm.event.chief_surname" layout="row"  layout-align="space-between center">
+                    <p><strong>Guide chief surname:</strong></p>
+                    <p>{{ vm.event.chief_surname}}</p>
+                </div>
+                <div ng-if="vm.event.chief_companyname" layout="row"  layout-align="space-between center">
+                    <p><strong>Guide chief company:</strong></p>
+                    <p>{{ vm.event.chief_companyname}}</p>
+                </div>
+            </md-card-content>
+        </md-card>
+        <md-card>
+            <md-card-content>
+                <div ng-if="vm.event.service_type" layout="row"  layout-align="space-between center">
+                    <p><strong>Service type:</strong></p>
+                    <p>{{ vm.event.service_type}}</p>
+                </div>
+                <div ng-if="vm.event.tour_difficulty" layout="row"  layout-align="space-between center">
+                    <p><strong>Tour difficulty:</strong></p>
+                    <p>{{ vm.event.tour_difficulty}}</p>
+                </div>
+                <div ng-if="vm.event.client_type" layout="row"  layout-align="space-between center">
+                    <p><strong>Client type:</strong></p>
+                    <p>{{ vm.event.client_type}}</p>
+                </div>
+            </md-card-content>
+        </md-card>
+        <md-card>
+            <md-card-content>
+                <div ng-if="vm.event.agenzia_nome" layout="row"  layout-align="space-between center">
+                    <p><strong>Agency:</strong></p>
+                    <p>{{ vm.event.agenzia_nome}}</p>
+                </div>
+                <div ng-if="vm.event.agenzia_telefono" layout="row"  layout-align="space-between center">
+                    <p><strong>Agency phone:</strong></p>
+                    <a aria-label="Agency phone" ng-href="tel:{{ vm.event.agenzia_telefono}}">
+                        {{ vm.event.agenzia_telefono}}
+                    </a>
+                </div>
+                <div ng-if="vm.event.codice" layout="row"  layout-align="space-between center">
+                    <p><strong>Tour code:</strong></p>
+                    <p>{{ vm.event.codice}}</p>
+                </div>
+            </md-card-content>
+        </md-card>
+        <md-card>
+            <md-card-content>
+                <div ng-if="vm.event.pax_nationality || vm.event.pax_continent" layout="row"  layout-align="space-between center">
+                    <p><strong>Pax nationality:</strong></p>
+                    <p><span ng-if="vm.event.pax_continent">{{ vm.event.pax_continent}}</span><span ng-if="vm.event.pax_continent && vm.event.pax_nationality"> - </span><span ng-if="vm.event.pax_nationality">{{ vm.event.pax_nationality}}</span></p>
+                </div>
+                <div ng-if="vm.event.pax_adults" layout="row"  layout-align="space-between center">
+                    <p><strong>Pax adults:</strong></p>
+                    <p>{{ vm.event.pax_adults}}</p>
+                </div>
+                <div ng-if="vm.event.pax_children" layout="row"  layout-align="space-between center">
+                    <p><strong>Pax children:</strong></p>
+                    <p>{{ vm.event.pax_children}}</p>
+                </div>
+                <div ng-if="vm.event.pax_infant" layout="row"  layout-align="space-between center">
+                    <p><strong>Pax infants:</strong></p>
+                    <p>{{ vm.event.pax_infant}}</p>
+                </div>
+
+            </md-card-content>
+        </md-card>
+        <md-card ng-if="vm.event.tour_leader_name || vm.event.tour_leader_number || vm.event.driver_name || vm.event.driver_number">
+            <md-card-content>
+                <div ng-if="vm.event.tour_leader_name" layout="row"  layout-align="space-between center">
+                    <p><strong>Tour leader:</strong></p>
+                    <p>{{ vm.event.tour_leader_name}}</p>
+                </div>
+                <div ng-if="vm.event.tour_leader_number" layout="row"  layout-align="space-between center">
+                    <p><strong>Tour leader phone:</strong></p>
+                    <a aria-label="Tour leader phone" ng-href="tel:{{ vm.event.tour_leader_number}}">
+                        {{ vm.event.tour_leader_number}}
+                    </a>
+                </div>
+                <div ng-if="vm.event.driver_name" layout="row"  layout-align="space-between center">
+                    <p><strong>Driver:</strong></p>
+                    <p>{{ vm.event.driver_name}}</p>
+                </div>
+                <div ng-if="vm.event.driver_number" layout="row"  layout-align="space-between center">
+                    <p><strong>Driver phone:</strong></p>
+                    <a aria-label="Driver phone" ng-href="tel:{{ vm.event.driver_number}}">
+                        {{ vm.event.driver_number}}
+                    </a>
+                </div>
+            </md-card-content>
+        </md-card>
+        <md-card>
+            <md-card-content> 
+                <div layout="row"  layout-align="space-between center">
+                    <p><strong>Audio guide:</strong></p>
+                    <label class="custombutton">{{vm.convertString(vm.event.radio_guides)}}</label>
+<!--                     <md-button class="custombutton" ng-disabled="vm.event.radio_guides === '0'" md-no-ink>
+                        <i class="material-icons md-48">&#xE310;</i>
+                    </md-button> -->
+                </div>
+                <div ng-if="vm.event.voucher" layout="row"  layout-align="space-between center" layout-wrap>
+                    <p><strong>Voucher {{ vm.voucherCount("voucher") }}:</strong></p>
+                    <md-button class="custombutton" ng-click="vm.vouchers(vm.event.voucher)" md-no-ink>
+                        <i class="material-icons md-48">&#xE8B0;</i>
+                    </md-button>
+                </div>
+                <div ng-if="vm.event.documents_file" layout="row"  layout-align="space-between center" layout-wrap>
+                    <p><strong>Voucher {{ vm.voucherCount("documents_file") }}:</strong></p>
+                    <md-button class="custombutton" ng-click="vm.vouchers(vm.event.documents_file)" md-no-ink>
+                        <i class="material-icons md-48">&#xE8B0;</i>
+                    </md-button>
+                </div>
+                <div ng-if="vm.event.documents_file2" layout="row"  layout-align="space-between center" layout-wrap>
+                    <p><strong>Voucher {{ vm.voucherCount("documents_file2") }}:</strong></p>
+                    <md-button class="custombutton" ng-click="vm.vouchers(vm.event.documents_file2)" md-no-ink>
+                        <i class="material-icons md-48">&#xE8B0;</i>
+                    </md-button>
+                </div>
+                <div ng-if="vm.event.documents_file3" layout="row"  layout-align="space-between center" layout-wrap>
+                    <p><strong>Voucher {{ vm.voucherCount("documents_file3") }}:</strong></p>
+                    <md-button class="custombutton" ng-click="vm.vouchers(vm.event.documents_file3)" md-no-ink>
+                        <i class="material-icons md-48">&#xE8B0;</i>
+                    </md-button>
+                </div>
+                <div ng-if="vm.event.documents_file4" layout="row"  layout-align="space-between center" layout-wrap>
+                    <p><strong>Voucher {{ vm.voucherCount("documents_file4") }}:</strong></p>
+                    <md-button class="custombutton" ng-click="vm.vouchers(vm.event.documents_file4)" md-no-ink>
+                        <i class="material-icons md-48">&#xE8B0;</i>
+                    </md-button>
+                </div>
+            </md-card-content>
+        </md-card>
+
+        <md-card ng-if="vm.event.itinerary">
+            <md-card-content> 
+                <div layout="row"  layout-align="space-between center" align="center">
+                    <p style="margin: 10px auto 0"><strong>Itinerary</strong></p>
+                </div>
+                <div layout="row"  layout-align="space-between center" align="center">
+                    <p>{{vm.event.itinerary}}</p>
+                </div>
+            </md-card-content> 
+        </md-card>
+
+        <md-card ng-if="vm.event.notes">
+            <md-card-content>
+                <div layout="row"  layout-align="space-between center" align="center">
+                    <p style="margin: 10px auto 0"><strong>Notes</strong></p>
+                </div>
+                <div layout="row"  layout-align="space-between center" align="center">
+                    <p>{{vm.event.notes}}</p>
+                </div>
+            </md-card-content> 
+        </md-card>
+
+        <md-button class="md-primary md-raised" ng-disabled="vm.disableCheckout || vm.event.stato !== '3'" ng-click="vm.checkout($event)" md-no-ink>Checkout</md-button>
+
+
+
+    </div>
+</md-content>
+<ng-include src="'app/menu/menu.footer.view.html'"></ng-include>

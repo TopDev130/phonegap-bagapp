@@ -1,0 +1,34 @@
+<ng-include src="'app/menu/menu.view.html'"></ng-include>
+<md-toolbar md-scroll-shrink style="padding-top: 20px;">
+    <div class="md-toolbar-tools" layout-align="space-between center">
+        <md-button ng-if="menu.back" class="md-icon-button" aria-label="Back" ng-click="menu.historyBack()">
+            <i class="material-icons">&#xE5CB;</i>
+        </md-button>
+        <md-button ng-if="!menu.back" class="md-icon-button" aria-label="Menu" ng-click="menu.toggle()">
+            <i class="material-icons">&#xE5D2;</i>
+        </md-button>
+        <h3>
+            <span>{{ menu.title}}</span>
+        </h3>
+    </div>
+</md-toolbar>
+<md-divider></md-divider>
+<md-toolbar md-scroll-shrink>
+    <div class="md-toolbar-tools" layout-align="space-between center">
+        <md-button class="md-icon-button" aria-label="Home" ng-href="#/guide/agenda/events">
+            <i class="material-icons">&#xE88A;</i>
+        </md-button>
+
+        <md-button class="md-icon-button" aria-label="SOS" ng-href="{{menu.SOSnumber}}">
+            <i class="material-icons">&#xE0CD;</i>
+        </md-button>
+        
+        <md-button ng-disabled="menu.disabletoggleLastMinute" class="md-icon-button" aria-label="Last Minute" ng-click="menu.toggleLastMinute()">
+            <i ng-if="globals.currentUser.lastminute == 1" class="material-icons">&#xE3E7;</i>
+            <i ng-if="globals.currentUser.lastminute == 0" class="material-icons">&#xE3E6;</i>
+        </md-button>
+        <md-button class="md-icon-button" aria-label="Agenda" ng-href="#/guide/agenda">
+            <i class="material-icons">&#xE8DF;</i>
+        </md-button>
+    </div>
+</md-toolbar>

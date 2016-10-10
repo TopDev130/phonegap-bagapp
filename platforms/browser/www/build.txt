@@ -1246,6 +1246,8 @@ app/app-directives/resolveloader.directive.js
 app/app-factories/cache.factory.js
 app/app-services/authentication.service.js
 app/app-filters/range.filter.js
+app/guide/lock/guide.lock.controller.js
+app/guide/unlock/guide.unlock.controller.js
 app/guide/agenda/guide.agenda.controller.js
 app/guide/agenda/event/guide.agenda.event.controller.js
 app/guide/agenda/events/guide.agenda.events.controller.js

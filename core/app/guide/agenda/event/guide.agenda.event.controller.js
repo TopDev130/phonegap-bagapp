@@ -36,7 +36,7 @@ define([
             notAvailable: '#fc0d1b'
         };
 
-        console.log(event);
+        // console.log(event);
 
         vm.acceptTour = function (ev)
         {
@@ -89,9 +89,9 @@ define([
 
         vm.convertString = function(convflag) {
             if (convflag === '0') {
-                return "No";
+                return "No   ";
             };
-            return "Yes";
+            return "Yes   ";
         }
 
         vm.checkout = function (ev)

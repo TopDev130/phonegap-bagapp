@@ -1,0 +1,21 @@
+<ng-include src="'app/menu/menu.head.view.html'"></ng-include>
+<md-content flex>
+    <md-card>
+        <md-card-content>
+            <div layout="row"  layout-align="space-between center" align="center">
+                <p style="margin: 10px auto;"><strong>Choose days to lock</strong></p>
+            </div>
+            <div layout="row"  layout-align="space-between center" style="margin: 20px 0;">
+                <label style="width: 100%;"><strong>Start date:</strong> <md-datepicker ng-model="vm.dateData.startDate" md-open-on-focus="vm.openDate(vm.dateData.startDate)"></md-datepicker></label>
+            </div>
+            <div layout="row"  layout-align="space-between center" style="margin: 10px 0;">
+                <label style="width: 100%;"><strong>End date:</strong> <md-datepicker ng-model="vm.dateData.endDate" md-open-on-focus="vm.openDate(vm.dateData.endDate)"></md-datepicker></label>
+            </div>
+            <div align="center">
+                <md-button class="md-primary md-raised" ng-click="vm.sendDate()" md-no-ink>Send</md-button>
+            </div>
+            <md-progress-linear ng-if="vm.isLoading" md-mode="indeterminate"></md-progress-linear>
+        </md-card-content>
+    </md-card>
+</md-content>
+<ng-include src="'app/menu/menu.footer.view.html'"></ng-include>

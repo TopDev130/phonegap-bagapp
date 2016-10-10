@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="bagApp">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi" />
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline' *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; media-src 'self' 'unsafe-inline' *; img-src 'self' 'unsafe-inline' data: *">
+        <!-- Angular Material CSSs -->
+        <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+        <link rel="stylesheet" href="bower_components/angular-material/layouts/angular-material.layouts.min.css">
+        <!-- TimePicker CSS -->
+        <link rel="stylesheet" href="bower_components/jt.timepicker/jquery.timepicker.css">
+        <!-- FullCalendar CSS -->
+        <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css"/>
+        <!-- Application CSS -->
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>BAG</title>
+    </head>
+    <body ng-controller="MenuController as menu">
+        <div ng-view id="popupContainer" class="view-animate" layout="column" layout-fill ng-cloak></div>
+        <div id="loaderResolve" class="ng-hide" resolve-loader>
+            <md-progress-circular md-mode="indeterminate" md-diameter="100"></md-progress-circular>
+        </div>
+        <script data-main="app/main" src="bower_components/requirejs/require.js"></script>
+    </body>
+</html>

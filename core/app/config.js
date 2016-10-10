@@ -16,6 +16,10 @@ define([// jshint ignore:line
     function config($routeProvider, $locationProvider, localStorageServiceProvider, $mdThemingProvider, $translateProvider, USER_ROLES, $logProvider, $httpProvider, $mdDateLocaleProvider, APP_CONSTANTS)
     {
 
+        $mdDateLocaleProvider.formatDate = function(date) {
+            return moment(date).format('DD/MM/YYYY');
+        };
+
         $routeProvider
                 .when('/login', {
                     templateUrl: 'app/login/login.view.html',
@@ -28,6 +32,22 @@ define([// jshint ignore:line
                 .when('/guide/agenda', {
                     templateUrl: 'app/guide/agenda/guide.agenda.view.html',
                     controller: 'GuideAgendaController',
+                    controllerAs: 'vm',
+                    data: {
+                        authorizedRoles: [USER_ROLES.guide, USER_ROLES.admin]
+                    }
+                })
+                .when('/guide/lock', {
+                    templateUrl: 'app/guide/lock/guide.lock.view.html',
+                    controller: 'GuideLockController',
+                    controllerAs: 'vm',
+                    data: {
+                        authorizedRoles: [USER_ROLES.guide, USER_ROLES.admin]
+                    }
+                })
+                .when('/guide/unlock', {
+                    templateUrl: 'app/guide/unlock/guide.unlock.view.html',
+                    controller: 'GuideUnLockController',
                     controllerAs: 'vm',
                     data: {
                         authorizedRoles: [USER_ROLES.guide, USER_ROLES.admin]
@@ -83,6 +103,15 @@ define([// jshint ignore:line
                 .otherwise({redirectTo: '/'});
 
         //$locationProvider.html5Mode(true).hashPrefix('!');
+
+        // $mdDateLocaleProvider.formatDate = function(date) {
+        //     return date ? moment(date).format('DD/MM/YYYY') : '';
+        // };
+          
+        // $mdDateLocaleProvider.parseDate = function(dateString) {
+        //     var m = moment(dateString, 'DD/MM/YYYY', true);
+        //     return m.isValid() ? m.toDate() : new Date(NaN);
+        // };
 
         localStorageServiceProvider.setPrefix('bag');
 

@@ -1,0 +1,7 @@
+/*!
+ * angular-translate - v2.8.1 - 2015-10-01
+ * 
+ * Copyright (c) 2015 The angular-translate team, Pascal Precht; Licensed MIT
+ */
+
+!function(e,r){"function"==typeof define&&define.amd?define([],function(){return r()}):"object"==typeof exports?module.exports=r():r()}(this,function(){function e(e,r){"use strict";return function(i){if(!(i&&(angular.isArray(i.files)||angular.isString(i.prefix)&&angular.isString(i.suffix))))throw new Error("Couldn't load static files, no files and prefix or suffix specified!");i.files||(i.files=[{prefix:i.prefix,suffix:i.suffix}]);for(var t=function(t){if(!t||!angular.isString(t.prefix)||!angular.isString(t.suffix))throw new Error("Couldn't load static file, no prefix or suffix specified!");return r(angular.extend({url:[t.prefix,i.key,t.suffix].join(""),method:"GET",params:""},i.$http)).then(function(e){return e.data},function(){return e.reject(i.key)})},n=e.defer(),f=[],a=i.files.length,s=0;s<a;s++)f.push(t({prefix:i.files[s].prefix,key:i.key,suffix:i.files[s].suffix}));return e.all(f).then(function(e){for(var r=e.length,i={},t=0;t<r;t++)for(var f in e[t])i[f]=e[t][f];n.resolve(i)},function(e){n.reject(e)}),n.promise}}return angular.module("pascalprecht.translate").factory("$translateStaticFilesLoader",e),e.$inject=["$q","$http"],e.displayName="$translateStaticFilesLoader","pascalprecht.translate"});

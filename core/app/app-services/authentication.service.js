@@ -284,6 +284,30 @@ define([
                 }, timeoutLong);
                 return deferred.promise;
             },
+            setLockedDate : function (setDate) {
+                var deferred = $q.defer();
+                $timeout(function() {
+                    $http({
+                        url: host + '/' + setDate.apiType + '/' + service.token,
+                        method: 'GET',
+                        data: $.param({startdate:setDate.startDate, enddate:setDate.endDate}),
+                        cache: false,
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                    }).then(function (response) {
+                        $log.debug(TAG, "setLockedDate", "response", response);
+                        var inReturn = response.data;
+                        if (inReturn.success !== 1) {
+                            deferred.reject(inReturn.msg);
+                            return;
+                        };
+                        deferred.resolve(inReturn.data);
+                    }, function (error) {
+                        $log.debug(TAG, "setLockedDate", "error", error);
+                        deferred.reject(error.statusText);
+                    });
+                }, timeoutLong);
+                return deferred.promise;
+            },
             toggleLastMinute : function ()
             {
                 var deferred = $q.defer();

@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-versionCode="1" id="it.labbit.bag" ios-CFBundleVersion="1.0.0.001" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <name>BAG</name>
+    <description>
+        BAG PhoneGap applicazione.
+    </description>
+    <author email="info@riccardobracci.it" href="http://riccardobracci.it">Riccardo Bracci</author>
+    <content src="index.html" />
+    <icon src="www/icon.png" />
+    <splash src="www/screen.png" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <icon density="ldpi" src="www/resources/android/icon/drawable-ldpi-icon.png" />
+    <icon density="mdpi" src="www/resources/android/icon/drawable-mdpi-icon.png" />
+    <icon density="hdpi" src="www/resources/android/icon/drawable-hdpi-icon.png" />
+    <icon density="xhdpi" src="www/resources/android/icon/drawable-xhdpi-icon.png" />
+    <icon density="xxhdpi" src="www/resources/android/icon/drawable-xxhdpi-icon.png" />
+    <icon density="xxxhdpi" src="www/resources/android/icon/drawable-xxxhdpi-icon.png" />
+    <splash density="land-ldpi" src="www/resources/android/splash/drawable-land-ldpi-screen.png" />
+    <splash density="land-mdpi" src="www/resources/android/splash/drawable-land-mdpi-screen.png" />
+    <splash density="land-hdpi" src="www/resources/android/splash/drawable-land-hdpi-screen.png" />
+    <splash density="land-xhdpi" src="www/resources/android/splash/drawable-land-xhdpi-screen.png" />
+    <splash density="land-xxhdpi" src="www/resources/android/splash/drawable-land-xxhdpi-screen.png" />
+    <splash density="land-xxxhdpi" src="www/resources/android/splash/drawable-land-xxxhdpi-screen.png" />
+    <splash density="port-ldpi" src="www/resources/android/splash/drawable-port-ldpi-screen.png" />
+    <splash density="port-mdpi" src="www/resources/android/splash/drawable-port-mdpi-screen.png" />
+    <splash density="port-hdpi" src="www/resources/android/splash/drawable-port-hdpi-screen.png" />
+    <splash density="port-xhdpi" src="www/resources/android/splash/drawable-port-xhdpi-screen.png" />
+    <splash density="port-xxhdpi" src="www/resources/android/splash/drawable-port-xxhdpi-screen.png" />
+    <splash density="port-xxxhdpi" src="www/resources/android/splash/drawable-port-xxxhdpi-screen.png" />
+    <allow-intent href="market:*" />
+    <preference name="loglevel" value="DEBUG" />
+    <preference name="permissions" value="none" />
+    <preference name="orientation" value="portrait" />
+    <preference name="target-device" value="universal" />
+    <preference name="fullscreen" value="true" />
+    <preference name="webviewbounce" value="true" />
+    <preference name="prerendered-icon" value="false" />
+    <preference name="stay-in-webview" value="false" />
+    <preference name="ios-statusbarstyle" value="black-opaque" />
+    <preference name="detect-data-types" value="true" />
+    <preference name="exit-on-suspend" value="false" />
+    <preference name="show-splash-screen-spinner" value="true" />
+    <preference name="auto-hide-splash-screen" value="false" />
+    <preference name="disable-cursor" value="false" />
+    <preference name="android-minSdkVersion" value="15" />
+    <preference name="android-installLocation" value="auto" />
+    <preference name="android-windowSoftInputMode" value="stateVisible|adjustPan" />
+    <preference name="android-build-tool" value="gradle" />
+    <preference name="BackupWebStorage" value="none" />
+    <preference name="SplashScreenDelay" value="10000" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="FadeSplashScreen" value="false" />
+</widget>

@@ -3,19 +3,29 @@
         <h1 class="md-toolbar-tools">{{'MENU.TITLE' | translate}}</h1>
       </md-toolbar>
     <md-content layout="column">
-            <div layout="row" layout-align="space-between center">
+        <div layout="row" layout-align="space-between center">
 			<md-button class="md-primary" href="#/guide/agenda/events" layout="row" layout-align="start center" flex aria-label="Home">
-                            <i class="material-icons">&#xE88A;</i>&nbsp;<p>{{'MENU.HOME' | translate}}</p>
+                <i class="material-icons">&#xE88A;</i>&nbsp;<p>{{'MENU.HOME' | translate}}</p>
 			</md-button>
 		</div>
         <div layout="row" layout-align="space-between center">
 			<md-button class="md-primary" href="#/guide/agenda" layout="row" layout-align="start center" flex aria-label="Agenda">
-                            <i class="material-icons">&#xE8DF;</i>&nbsp;<p>{{'MENU.AGENDA' | translate}}</p>
+                <i class="material-icons">&#xE8DF;</i>&nbsp;<p>{{'MENU.AGENDA' | translate}}</p>
+			</md-button>
+		</div>
+        <div layout="row" layout-align="space-between center">
+			<md-button class="md-primary" href="#/guide/lock" layout="row" layout-align="start center" flex aria-label="Lock">
+                <i class="material-icons">&#xE899;</i>&nbsp;<p>{{'LOCK' | translate}}</p>
+			</md-button>
+		</div>
+        <div layout="row" layout-align="space-between center">
+			<md-button class="md-primary" href="#/guide/unlock" layout="row" layout-align="start center" flex aria-label="Lock">
+                <i class="material-icons">&#xE898;</i>&nbsp;<p>{{'UNLOCK' | translate}}</p>
 			</md-button>
 		</div>
 		<div layout="row" layout-align="space-between center" ng-click="menu.logout()">
 			<md-button class="md-primary" href layout="row" layout-align="start center" flex aria-label="Logout">
-                            <i class="material-icons">&#xE8AC;</i>&nbsp;<p>{{'MENU.LOGOUT' | translate}}</p>
+                <i class="material-icons">&#xE8AC;</i>&nbsp;<p>{{'MENU.LOGOUT' | translate}}</p>
 			</md-button>
 		</div>
     </md-content>

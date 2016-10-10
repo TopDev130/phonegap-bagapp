@@ -74,6 +74,10 @@ define('config',[// jshint ignore:line
     function config($routeProvider, $locationProvider, localStorageServiceProvider, $mdThemingProvider, $translateProvider, USER_ROLES, $logProvider, $httpProvider, $mdDateLocaleProvider, APP_CONSTANTS)
     {
 
+        $mdDateLocaleProvider.formatDate = function(date) {
+            return moment(date).format('DD/MM/YYYY');
+        };
+
         $routeProvider
                 .when('/login', {
                     templateUrl: 'app/login/login.view.html',
@@ -86,6 +90,22 @@ define('config',[// jshint ignore:line
                 .when('/guide/agenda', {
                     templateUrl: 'app/guide/agenda/guide.agenda.view.html',
                     controller: 'GuideAgendaController',
+                    controllerAs: 'vm',
+                    data: {
+                        authorizedRoles: [USER_ROLES.guide, USER_ROLES.admin]
+                    }
+                })
+                .when('/guide/lock', {
+                    templateUrl: 'app/guide/lock/guide.lock.view.html',
+                    controller: 'GuideLockController',
+                    controllerAs: 'vm',
+                    data: {
+                        authorizedRoles: [USER_ROLES.guide, USER_ROLES.admin]
+                    }
+                })
+                .when('/guide/unlock', {
+                    templateUrl: 'app/guide/unlock/guide.unlock.view.html',
+                    controller: 'GuideUnLockController',
                     controllerAs: 'vm',
                     data: {
                         authorizedRoles: [USER_ROLES.guide, USER_ROLES.admin]
@@ -141,6 +161,15 @@ define('config',[// jshint ignore:line
                 .otherwise({redirectTo: '/'});
 
         //$locationProvider.html5Mode(true).hashPrefix('!');
+
+        // $mdDateLocaleProvider.formatDate = function(date) {
+        //     return date ? moment(date).format('DD/MM/YYYY') : '';
+        // };
+          
+        // $mdDateLocaleProvider.parseDate = function(dateString) {
+        //     var m = moment(dateString, 'DD/MM/YYYY', true);
+        //     return m.isValid() ? m.toDate() : new Date(NaN);
+        // };
 
         localStorageServiceProvider.setPrefix('bag');
 
@@ -667,6 +696,30 @@ define('app-services/authentication.service',[
                 }, timeoutLong);
                 return deferred.promise;
             },
+            setLockedDate : function (setDate) {
+                var deferred = $q.defer();
+                $timeout(function() {
+                    $http({
+                        url: host + '/' + setDate.apiType + '/' + service.token,
+                        method: 'GET',
+                        data: $.param({startdate:setDate.startDate, enddate:setDate.endDate}),
+                        cache: false,
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                    }).then(function (response) {
+                        $log.debug(TAG, "setLockedDate", "response", response);
+                        var inReturn = response.data;
+                        if (inReturn.success !== 1) {
+                            deferred.reject(inReturn.msg);
+                            return;
+                        };
+                        deferred.resolve(inReturn.data);
+                    }, function (error) {
+                        $log.debug(TAG, "setLockedDate", "error", error);
+                        deferred.reject(error.statusText);
+                    });
+                }, timeoutLong);
+                return deferred.promise;
+            },
             toggleLastMinute : function ()
             {
                 var deferred = $q.defer();
@@ -944,6 +997,139 @@ define('app-filters/range.filter',['app'], function(app) {
 });
 
 
+define('guide/lock/guide.lock.controller',[
+    'app',
+    'moment'
+], function (app, moment)
+{
+
+    app.controller('GuideLockController', GuideLockController);
+
+    GuideLockController.$inject = ['$rootScope', '$scope', '$log', '$compile', '$timeout', '$mdDialog', 'AuthenticationService', 'USER_ROLES', 'PUSH'];
+
+    function GuideLockController($rootScope, $scope, $log, $compile, $timeout, $mdDialog, AuthenticationService, USER_ROLES, PUSH)
+    {
+        var TAG = "GuideLockController";
+        var vm = this;
+
+        vm.dateData = {
+            startDate: new Date(),
+            endDate: new Date()
+        }
+
+
+        vm.openDate = function(convDate) {
+            if (convDate != null) {
+                return moment(convDate).format('MM/DD/YYYY');    
+            } else {
+                return moment().format('MM/DD/YYYY');
+            };
+        }
+
+        vm.sendDate = function() {
+            if (vm.dateData.startDate==null || vm.dateData.endDate==null) {
+                alert("Date input error!\nPlease input again!");
+                return;
+            };
+            if (moment(vm.dateData.startDate,"DD/MM/YYYY HH:mm:ss").diff(moment(vm.dateData.endDate,"DD/MM/YYYY HH:mm:ss"))>=0) {
+                alert("End date input error!\nPlease input again!");
+                return;
+            };
+
+            var lockDate = {
+                "startDate": moment(vm.dateData.startDate).format('YYYY-MM-DD'),
+                "endDate": moment(vm.dateData.endDate).format('YYYY-MM-DD'),
+                "apiType": 'setLockedDays'
+            }
+
+            console.log(lockDate);
+
+            vm.isLoading=true;
+
+            AuthenticationService.setLockedDate(lockDate).then(
+                function (response)
+                {
+                    delete vm.isLoading;
+                    alert('Lock Date Set Successful!');
+                },
+                function (error)
+                {
+                    delete vm.isLoading;
+                    alert('Lock Date Set failed!\n'+error);
+                }
+            );
+
+        }
+    }
+});
+
+
+define('guide/unlock/guide.unlock.controller',[
+    'app',
+    'moment'
+], function (app, moment)
+{
+
+    app.controller('GuideUnLockController', GuideUnLockController);
+
+    GuideUnLockController.$inject = ['$rootScope', '$scope', '$log', '$compile', '$timeout', '$mdDialog', 'AuthenticationService', 'USER_ROLES', 'PUSH'];
+
+    function GuideUnLockController($rootScope, $scope, $log, $compile, $timeout, $mdDialog, AuthenticationService, USER_ROLES, PUSH)
+    {
+        var TAG = "GuideUnLockController";
+        var vm = this;
+
+        vm.dateData = {
+            startDate: new Date(),
+            endDate: new Date()
+        }
+        
+        vm.openDate = function(convDate) {
+            if (convDate != null) {
+                return moment(convDate).format('MM/DD/YYYY');    
+            } else {
+                return moment().format('MM/DD/YYYY');    
+            };
+            
+        }
+
+        vm.sendDate = function() {
+            if (vm.dateData.startDate==null || vm.dateData.endDate==null) {
+                alert("Date input error!\nPlease input again!");
+                return;
+            };
+            if (moment(vm.dateData.startDate,"DD/MM/YYYY HH:mm:ss").diff(moment(vm.dateData.endDate,"DD/MM/YYYY HH:mm:ss"))>=0) {
+                alert("End date input error!\nPlease input again!");
+                return;
+            };
+
+            var unlockDate = {
+                "startDate": moment(vm.dateData.startDate).format('YYYY-MM-DD'),
+                "endDate": moment(vm.dateData.endDate).format('YYYY-MM-DD'),
+                "apiType": 'unsetLockedDays'
+            }
+
+            console.log(unlockDate);
+
+            vm.isLoading=true;
+
+            AuthenticationService.setLockedDate(unlockDate).then(
+                function (response)
+                {
+                    delete vm.isLoading;
+                    alert('UnLock Date Set Successful!');
+                },
+                function (error)
+                {
+                    delete vm.isLoading;
+                    alert('UnLock Date Set failed!\n'+error);
+                }
+            );
+        }
+    }
+});
+
+
 define('guide/agenda/guide.agenda.controller',[
     'app',
     'moment'
@@ -1134,7 +1320,7 @@ define('guide/agenda/event/guide.agenda.event.controller',[
             notAvailable: '#fc0d1b'
         };
 
-        console.log(event);
+        // console.log(event);
 
         vm.acceptTour = function (ev)
         {
@@ -1187,9 +1373,9 @@ define('guide/agenda/event/guide.agenda.event.controller',[
 
         vm.convertString = function(convflag) {
             if (convflag === '0') {
-                return "No";
+                return "No   ";
             };
-            return "Yes";
+            return "Yes   ";
         }
 
         vm.checkout = function (ev)
@@ -1845,6 +2031,8 @@ define('load',[
     'app-factories/cache.factory',
     'app-services/authentication.service',
     'app-filters/range.filter',
+    'guide/lock/guide.lock.controller',
+    'guide/unlock/guide.unlock.controller',
     'guide/agenda/guide.agenda.controller',
     'guide/agenda/event/guide.agenda.event.controller',
     'guide/agenda/events/guide.agenda.events.controller',

@@ -5,7 +5,6 @@ define([
     'moment'
 ], function (app, moment)
 {
-
     app.controller('GuideAgendaEventController', GuideAgendaEventController);
 
     GuideAgendaEventController.$inject = ['$routeParams', '$rootScope', '$scope', '$location', '$log', '$mdDialog', 'AuthenticationService', 'USER_ROLES', 'event'];

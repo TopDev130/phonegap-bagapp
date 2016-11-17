@@ -4,11 +4,9 @@ define(['app'], function (app)
 {
     app.directive('resolveLoader', ['$rootScope', '$timeout', '$mdDialog', '$location', '$log', function ($rootScope, $timeout, $mdDialog, $location, $log)
         {
-
             return {
                 link: function (scope, element)
                 {
-
                     $rootScope.$on('$routeChangeStart', function (event, currentRoute, previousRoute)
                     {
                         element.removeClass('ng-hide');

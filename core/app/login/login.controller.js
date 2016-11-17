@@ -2,7 +2,6 @@
 
 define(['app'], function (app)
 {
-
     app.controller('LoginController', LoginController);
 
     LoginController.$inject = ['$rootScope', '$scope', '$location', '$log', 'AuthenticationService', 'USER_ROLES'];
@@ -15,7 +14,6 @@ define(['app'], function (app)
         $scope.$parent.menu.showFooter = false;
         $scope.$parent.menu.back = false;
         $scope.$parent.menu.backPath = "";
-
 
         (function initController()
         {

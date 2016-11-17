@@ -6,7 +6,6 @@ define([
     'jquery'
 ], function (app, moment, jQuery)
 {
-
     app.factory('AuthenticationService', AuthenticationService);
 
     AuthenticationService.$inject = ['localStorageService', '$http', '$q', '$rootScope', '$timeout', '$translate', '$log', 'APP_CONSTANTS', 'USER_ROLES', 'AUTH_EVENTS', 'PUSH', '$mdDateLocale'];

@@ -2,7 +2,6 @@
 
 define(['app'], function (app)
 {
-
     app.controller('GuideHomeController', GuideHomeController);
 
     GuideHomeController.$inject = ['$rootScope', '$scope', '$location', '$log', 'AuthenticationService', 'USER_ROLES'];
